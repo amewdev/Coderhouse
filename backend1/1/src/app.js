@@ -4,14 +4,14 @@ import productsRouter from './routes/products.router.js';
 
 const PORT = 8080;
 const HOST = "localhost"; //same as 127.0.0.1
-const server = express();
+const app = express();
 
-server.use(express.urlencoded({extended:true}));
-server.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
-server.use('/api/carts', cartsRouter);
-server.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
+app.use('/api/products', productsRouter);
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Ejecutándose en http://${HOST}:${PORT}`);
 });
