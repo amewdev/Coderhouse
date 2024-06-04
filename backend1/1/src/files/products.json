@@ -1,0 +1,71 @@
+[
+	{
+		"id": 1,
+		"title": "switch",
+		"description": "fun",
+		"code": "000210",
+		"price": "800",
+		"status": "true",
+		"stock": "5",
+		"category": "videogames",
+		"thumbnails": [
+			"..\\src\\public\\images\\thumbnails\\imgg.jpg",
+			"..\\src\\public\\images\\thumbnails\\imgg.jpg"
+		]
+	},
+	{
+		"id": 2,
+		"title": "switch",
+		"description": "fun",
+		"code": "000210",
+		"price": 900,
+		"status": true,
+		"stock": 5,
+		"category": "videogames",
+		"thumbnails": []
+	},
+	{
+		"id": 3,
+		"title": "switch",
+		"description": "ffunn",
+		"code": "000210",
+		"price": 900,
+		"status": true,
+		"stock": 5,
+		"category": "videogames",
+		"thumbnails": []
+	},
+	{
+		"id": 4,
+		"title": "switch",
+		"description": "fun",
+		"code": "000210",
+		"price": null,
+		"status": true,
+		"stock": 5,
+		"category": "videogames",
+		"thumbnails": []
+	},
+	{
+		"id": 5,
+		"title": "switch",
+		"description": "fun",
+		"code": "000210",
+		"price": null,
+		"status": true,
+		"stock": 5,
+		"category": "videogames",
+		"thumbnails": []
+	},
+	{
+		"id": 6,
+		"title": "switch",
+		"description": "fun",
+		"code": "000210",
+		"price": null,
+		"status": true,
+		"stock": 5,
+		"category": "videogames",
+		"thumbnails": []
+	}
+]
