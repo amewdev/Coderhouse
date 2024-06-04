@@ -5,15 +5,22 @@ const router = Router();
 const productManager = new ProductManager();
 
 router.get('/', async (req,res) => {
+    let {limit} = req.query;
+    limit = Number(limit);
+
     try {
-        const products = await productManager.getProducts();
+        let products = await productManager.getProducts();
+        if (isNaN(limit)) {
+            throw new Error("Limit must be Number")
+        } else {
+            products = products.filter(p => p.id <= limit);
+        };
         res.status(200).send({ state: "success", payload:products});
     }
     catch(error) {
         res.status(400).send({ state: "error", error: error.message });
     }
 });
-
 router.get('/:pid', async (req,res) => {
     let { pid } = req.params;
 
