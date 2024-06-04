@@ -34,12 +34,13 @@ export default class ProductManager {
         return product;
     };
 
-    postProduct = async (title, description, code, price, status, stock, category) => {
+    postProduct = async (title, description, code, price, stock, category) => {
         //fields previously validated in products.router.js
         const products = await this.getProducts();
         const newProduct = {
             id: await this.getId(),
-            title, description, code, price, status, stock, category,
+            title, description, code, price, stock, category,
+            status: true,
             thumbnails: []
         };
 
