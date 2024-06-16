@@ -1,0 +1,66 @@
+<header>
+    * Live loading product list (with websockets)
+</header>
+
+<main>
+    <aside>
+        <h3>Form</h3>
+        <form method="POST" action="/realtimeproducts">
+            <div>
+                <label for="title-input">Product title</label>
+                <input type="text" name="title" id="title-input" required>
+            </div>
+            <div>
+                <label for="description-input">Product description</label>
+                <input type="text" name="description" id="description-input" required>
+            </div>
+            <div>
+                <label for="code-input">Product code</label>
+                <input type="text" name="code" id="code-input" required>
+            </div>
+            <div>
+                <label for="price-input">Product price</label>
+                <input type="number" name="price" id="price-input" required>
+            </div>
+            <div>
+                <label for="stock-input">Product stock</label>
+                <input type="number" name="stock" id="stock-input" required>
+            </div>
+            <div>
+                <label for="category-input">Product category</label>
+                <input type="text" name="category" id="category-input" required>
+            </div>
+            <input type="submit" value="Save">
+        </form>
+
+        <label for="select"></label>
+        <select name="select" id="select">
+        </select>
+
+        <button id="deleteButton">Delete</button>
+    </aside>
+
+    <section>
+        <table>
+            <caption>Products</caption>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Code</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Category</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/api/public/js/realTimeProducts.js"></script>
