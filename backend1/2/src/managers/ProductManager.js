@@ -81,7 +81,7 @@ export default class ProductManager {
         const products = await this.getProducts();
         const product = products.find((p) => p.id === pid);
         if (product) {
-            if (Object.prototype.hasOwnProperty.call(product, property)) {
+            if (Object.hasOwn(product, property)) {
                 if (property === "thumbnails") { //for adding thumbnails
                     if (!Array.isArray(product.thumbnails)) {
                         product["thumbnails"] = [];
