@@ -1,12 +1,12 @@
 {
-    "name": "extra",
+    "name": "2",
     "version": "1.0.0",
     "description": "Servidor de Node JS + Express + Handlebars + Socket.io",
-    "main": "./src/server.js",
+    "main": "./src/app.js",
     "type": "module",
     "scripts": {
-        "dev": "node --watch --no-warnings ./src/server.js",
-        "start": "node ./src/server.js",
+        "dev": "node --watch --no-warnings ./src/app.js",
+        "start": "node ./src/app.js",
         "stop-windows": "taskkill /F /IM node.exe",
         "stop-linux": "killall -9 node",
         "lint": "eslint ./src --fix"
