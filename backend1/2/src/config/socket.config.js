@@ -22,7 +22,6 @@ const config = (serverHTTP) => {
 };
 
 const updateProductsList = (products) => {
-    // Envía la lista de productos actualizada
     serverSocket.emit("listProducts", { products });
 };
 
