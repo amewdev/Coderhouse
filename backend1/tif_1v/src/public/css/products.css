@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #333;
+    color: white;
+    padding: .5vw 1vw
+}
+
+header>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw
+}
+
+header a,
+#controls a {
+    height: 100%;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    margin: 0;
+    padding: .05vw 0.25vw
+}
+
+h1 {
+    margin: 0;
+}
+
+#controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1vw 0;
+    gap: 1.5vw;
+    background-color: #777;
+    color: white
+}
+
+#controls>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#controls>div:first-child {
+    flex-direction: column;
+    gap: .1vw;
+    text-align: center;
+}
+
+#products_charts {
+    padding: 2vw 3vw
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #333;
+    color: white;
+    font-size: 3.1vh;
+    letter-spacing: 1px;
+}
+
+tr {
+    font-size: 2.7vh;
+    font-weight: 500;
+}
+
+tr:nth-child(odd) {
+    background-color: #bbb;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table tr th,
+table tr td {
+    border: 1px solid black;
+    padding: 0.25rem;
+    text-align: center;
+}

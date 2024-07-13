@@ -1,0 +1,73 @@
+<header>
+    <label for="cart-select">Choose a cart:</label>
+    <select id="cart-select">
+
+    </select>
+</header>
+
+<section>
+    <main id="main">
+        <!--Adds info with sockets-->
+    </main>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const pid = '{{ pid }}';
+
+    socket.emit('getProduct', { pid });
+
+    socket.on('socketProduct', (data) => {
+        const product = data.product;
+
+        const main = document.getElementById("main");
+        main.innerHTML = "";
+
+        const h1 = document.createElement("h1");
+        h1.textContent = product.title;
+        main.appendChild(h1);
+
+        const p1 = document.createElement("p");
+        p1.textContent = product.description;
+        main.appendChild(p1);
+
+        const hr = document.createElement("hr");
+        main.appendChild(hr);
+
+        const p2 = document.createElement("p");
+        p2.textContent = `Price : $${product.price}`;
+        main.appendChild(p2);
+
+        const div = document.createElement("div");
+        const button = document.createElement("button");
+        button.textContent = "Add to cart";
+        button.onclick = () => addToCart(pid);
+        if (!product.status) button.disabled = true;
+        const p3 = document.createElement("p");
+        p3.textContent = `Available units : ${product.stock}`;
+        div.appendChild(button);
+        div.appendChild(p3);
+        main.appendChild(div);
+    });
+
+    socket.emit("getCarts");
+
+    socket.on("socketCarts", (carts) => {
+        const cart_select = document.getElementById("cart-select");
+        cart_select.innerHTML = "";
+
+        carts.forEach((cart) => {
+            const option = document.createElement("option");
+            option.value = cart;
+            option.textContent = cart;
+            cart_select.appendChild(option);
+        })
+    });
+
+    function addToCart(pid) {
+        const cart_select = document.getElementById("cart-select");
+        const cid = cart_select.value;
+        socket.emit("productAddedToCart", { pid, cid });
+    };
+</script>
