@@ -130,7 +130,11 @@
 
             const td1 = document.createElement("td");
             td1.textContent = product.title;
-            if (!product.status) td1.style.textDecoration = "line-through";
+            if (!product.status) {
+                td1.style.textDecoration = "line-through"
+            } else {
+                td1.onclick = () => goToProductPage(product._id)
+            }
             tr.appendChild(td1);
 
             const td2 = document.createElement("td");

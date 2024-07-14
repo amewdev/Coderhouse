@@ -8,10 +8,47 @@ const productsManager = new ProductsManager();
 
 router.get("/", async (req, res) => {
     try {
-        const products = await productsManager.getAll(req.query);
-        res.status(200).json(products);
+        const { page, limit, sort, category, status } = req.query;
+
+        const filters = {};
+        filters.page = page ? Number(page) : 1;
+        filters.limit = limit ? limit : 10;
+        if (sort==="asc" || sort==="desc") filters.sort = sort;
+        if (category) filters.category = category;
+        if (status) filters.status = status;
+
+        const productsResult = await productsManager.getAll(filters);
+
+        let prevUrl = `localhost:8080/products?page=${filters.page-1}&limit=${limit}`;
+        let nextUrl = `localhost:8080/products?page=${filters.page+1}&limit=${limit}`;
+        if (sort) {
+            prevUrl += `&sort=${sort}`;
+            nextUrl += `&sort=${sort}`;
+        }
+        if (category) {
+            prevUrl += `&category=${category}`;
+            nextUrl += `&category=${category}`;
+        }
+        if (status) {
+            prevUrl += `&status=${status}`;
+            nextUrl += `&status=${status}`;
+        }
+        const response = {
+            status: "success",
+            payload: productsResult.docs,
+            totalPages: productsResult.totalPages,
+            prevPage: productsResult.prevPage || null,
+            nextPage: productsResult.nextPage || null,
+            page: productsResult.page,
+            hasPrevPage: productsResult.hasPrevPage,
+            hasNextPage: productsResult.hasNextPage,
+            prevLink: productsResult.hasPrevPage ? prevUrl : null,
+            nextLink: productsResult.hasNextPage ? nextUrl : null,
+        };
+
+        res.status(200).json(response);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ status: "error", message: error.message });
     }
 });
 
