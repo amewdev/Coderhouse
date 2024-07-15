@@ -32,7 +32,6 @@ const config = (serverHTTP) => {
                     cleanedFilters[key] = filters[key];
                 }
             }
-            console.log(cleanedFilters);
             const products = await pm.getAll(cleanedFilters);
             socket.emit("socketProducts", { products });
         });
@@ -54,6 +53,11 @@ const config = (serverHTTP) => {
             const categories = await pm.getCategories();
             socket.emit("socketCategories", { categories });
         });
+
+        socket.on("getProductsFromCart", async(cid) => {
+            const products = await cm.getProductsFromCart(cid);
+            socket.emit("socketProductsFromCart", { products });
+        });
     });
 };
 
@@ -67,6 +71,14 @@ const updateProducts = async (filters) => {
 
 const updateProduct = async (product) => {
     if (serverSocket) serverSocket.emit("socketProduct", { product });
+};
+
+const updateCart = async (cid) => {
+    if (serverSocket) {
+        const cm = new CartsManager();
+        const products = await cm.getProductsFromCart(cid);
+        serverSocket.emit("socketProductsFromCart", { products });
+    }
 };
 
 const updateCarts = async () => {
@@ -87,6 +99,7 @@ const updateCategories = async () => {
 
 export default {
     config,
+    updateCart,
     updateCarts,
     updateProduct,
     updateProducts,

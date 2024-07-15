@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 
         const filters = {};
         filters.page = page ? Number(page) : 1;
-        filters.limit = limit ? limit : 10;
+        filters.limit = limit || 10;
         if (sort==="asc" || sort==="desc") filters.sort = sort;
         if (category) filters.category = category;
         if (status) filters.status = status;

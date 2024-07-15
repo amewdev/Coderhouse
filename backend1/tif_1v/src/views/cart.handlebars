@@ -1,0 +1,34 @@
+<header>
+    {{cid}}
+</header>
+
+<main id="main">
+
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const cid = '{{ cid }}';
+
+    socket.emit('getProductsFromCart', cid);
+
+    socket.on('socketProductsFromCart', (data) => {
+        const products = data.products;
+        console.log(products);
+
+        const main = document.getElementById("main");
+        main.innerHTML = "";
+
+        const h2 = document.createElement("h2");
+        h2.textContent = "Products in cart (with quantities)";
+        main.appendChild(h2);
+
+        for (const p of products) {
+            const par = document.createElement("p");
+            par.textContent = `${p.product.title} (${p.quantity})`;
+
+            main.appendChild(par);
+        }
+    });
+</script>
