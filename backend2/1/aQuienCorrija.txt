@@ -1,2 +1,2 @@
-Usé el proyecto base del profesor para que sea más rápido de corregir; mi proyecto de Backend 1 tiene muchas features y quedó complejo y extenso, tal vez sea complicado evaluar lo que quieren, y entiendo que en la cátedra tienen sus propios compromisos fuera de Coderhouse.
-Implementaré las nuevas tecnologías en mi anterior proyecto.
+Usé el proyecto base del profesor para que sea más rápido de corregir; mi proyecto de Backend 1 es algo diferente, tiene muchas features, y tal vez resulte complicado evaluar lo que quieren, y entiendo que en la cátedra tienen sus propios compromisos fuera de Coderhouse.
+Cuando termine el curso implementaré las nuevas tecnologías en mi anterior proyecto.
