@@ -1,2 +1,3 @@
-Usé el proyecto base del profesor para que sea más rápido de corregir; mi proyecto de Backend 1 tiene muchas features y quedó complejo y extenso, tal vez sea complicado evaluar lo que quieren, y entiendo que en la cátedra tienen sus propios compromisos fuera de Coderhouse.
-Implementaré las nuevas tecnologías en mi anterior proyecto.
+Allan, hice un usuario con tu nombre. No sé cuántos años tenés, te puse 20, la edad que todos deseamos volver a tener.
+En la rúbrica no dice nada de usar mailing y el profesor, en la clase 13, dijo que no es necesario usarlo acá.
+Espero que esto merezca otro Óptimo :(
