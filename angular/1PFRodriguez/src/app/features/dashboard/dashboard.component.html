@@ -1,0 +1,34 @@
+<mat-drawer-container class="example-container" autosize>
+    <!--Sidebar (a la izq)-->
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p><strong>Menú lateral</strong></p>
+        @if (showFiller) {
+            <p><em>Tal vez haya que agregar algo acá para la segunda preentrega</em></p>
+        }
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+            @if(showFiller) {
+                Ocultar texto secreto
+            } @else {
+                Mostrar texto
+            }
+        </button>
+    </mat-drawer>
+
+    <!--Área derecha-->
+    <div class="example-sidenav-content">
+        <mat-toolbar>
+            <button
+                mat-icon-button
+                (click)="drawer.toggle()"
+                class="example-icon"
+                aria-label="Example icon-button with menu icon"
+            >
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>1PF - Ariel Rodríguez</span>
+        </mat-toolbar>
+
+        <app-users></app-users>
+
+    </div>
+</mat-drawer-container>
