@@ -1,0 +1,51 @@
+<mat-drawer-container class="example-container" autosize>
+    <!--Sidebar (a la izq)-->
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-nav-list>
+            <a
+                routerLinkActive
+                #homeLink="routerLinkActive"
+                routerLink="home"
+                [activated]="homeLink.isActive"
+                mat-list-item
+            >INICIO</a>
+            <a
+                routerLink="users"
+                mat-list-item
+                routerLinkActive
+                #usersLink="routerLinkActive"
+                [activated]="usersLink.isActive"
+            >USUARIOS</a>
+            <a
+                routerLink="categories"
+                mat-list-item
+                routerLinkActive
+                #categoriesLink="routerLinkActive"
+                [activated]="categoriesLink.isActive"
+            >CATEGORÍAS</a>
+            <a (click)="logout()" mat-list-item>CERRAR SESIÓN</a>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <!--Área derecha-->
+    <div class="example-sidenav-content">
+        <mat-toolbar>
+            <button
+                mat-icon-button
+                (click)="drawer.toggle()"
+                class="example-icon"
+                aria-label="Example icon-button with menu icon"
+            >
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>1PF - Ariel Rodríguez</span>
+        </mat-toolbar>
+
+        <!--
+        <app-users></app-users>
+        -->
+
+        <router-outlet></router-outlet>
+
+    </div>
+</mat-drawer-container>

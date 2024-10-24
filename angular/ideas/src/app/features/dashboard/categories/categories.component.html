@@ -1,0 +1,15 @@
+<form [formGroup]="categoryForm" (ngSubmit)="handleSubmit()">
+    <mat-form-field>
+        <mat-label>Nombre de categoría</mat-label>
+        <input
+            formControlName="name"
+            matInput
+            placeholder="Electrodomésticos"
+        />
+        <button matSuffix mat-icon-button>
+            <mat-icon>{{isEditing ? "edit" : "add"}}</mat-icon>
+        </button>
+    </mat-form-field>
+</form>
+
+<app-categories-table (edit)="onEdit($event)" [categories]="categories"/>
