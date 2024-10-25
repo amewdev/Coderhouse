@@ -3,23 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'home',
         loadChildren: () => import('./home/home.module').then((n) => n.HomeModule),
     },
     {
-        path: 'users',
+        path: 'students',
         loadChildren: () => import('./users/users.module').then((n) => n.UsersModule),
     },
-    /*
     {
-        path: 'categories',
-        loadChildren: () => import('./categories/categories.module').then((n) => n.CategoriesModule),
+        path: 'courses',
+        loadChildren: () => import('./courses/courses.module').then((n) => n.CoursesModule),
     },
     {
         path: '**',
         redirectTo: 'home',
     },
-    */
 ];
 
 @NgModule({

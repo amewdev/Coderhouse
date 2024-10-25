@@ -1,0 +1,9 @@
+<div>
+    @if (isLoading) {
+        <p>Cargando</p>
+    } @else {
+        <h1>Detalle del curso</h1>
+        <h3>{{ course?.name }}</h3>
+        <p>Id : {{course?.description}}</p>
+    }
+</div>

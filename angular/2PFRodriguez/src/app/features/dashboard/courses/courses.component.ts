@@ -1,35 +1,35 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserDialogComponent } from './user-dialog/user-dialog.component';
-import { User } from './models';
-import { UsersService } from '../../../core/services/users.service';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { Course } from './models';
+import { CoursesService } from '../../../core/services/courses.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrl: './courses.component.scss'
 })
 
-export class UsersComponent {
+export class CoursesComponent {
 
-    displayedColumns: string[] = ['id', 'name', 'email', 'doc', 'actions'];
-    dataSource: User[] = [];
+    displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+    dataSource: Course[] = [];
 
     isLoading = false;
 
     constructor(
         private matDialog: MatDialog,
-        private userService: UsersService,
+        private courseService: CoursesService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
     ) {}
 
-    loadUsers(): void {
+    loadCourses(): void {
         this.isLoading = true;
-        this.userService.getUsers().subscribe({
-            next: (users) => {
-                this.dataSource = users;
+        this.courseService.getCourses().subscribe({
+            next: (courses) => {
+                this.dataSource = courses;
             },
             error: () => {
                 this.isLoading = false;
@@ -41,7 +41,7 @@ export class UsersComponent {
     }
 
     ngOnInit(): void {
-        this.loadUsers();
+        this.loadCourses();
     }
 
     onDelete(id: string) {
@@ -53,11 +53,11 @@ export class UsersComponent {
         this.router.navigate([userId,'detail'],{ relativeTo: this.activatedRoute });
     }
 
-    openModal(editingUser?: User): void {
+    openModal(editingCourse?: Course): void {
         this.matDialog
-        .open(UserDialogComponent, {
+        .open(CourseDialogComponent, {
             data: {
-                editingUser,
+                editingCourse,
             },
         })
         .afterClosed()
@@ -65,8 +65,8 @@ export class UsersComponent {
             next: (result) => {
                 console.log("Recibimos : ",result);
                 if (!!result) {
-                    if (editingUser)
-                        this.dataSource = this.dataSource.map((user) => user.id === editingUser.id ? {...user, ...result} : user )
+                    if (editingCourse)
+                        this.dataSource = this.dataSource.map((course) => course.id === editingCourse.id ? {...course, ...result} : course )
                     else
                         this.dataSource = [...this.dataSource, result];
                 }
@@ -74,12 +74,12 @@ export class UsersComponent {
         });
     }
 
-    handleUpdate(id: string, update: User): void {
+    handleUpdate(id: string, update: Course): void {
         this.isLoading = true;
 
-        this.userService.updateUserById(id, update).subscribe({
-            next: (users) => {
-                this.dataSource = users;
+        this.courseService.updateCourseById(id, update).subscribe({
+            next: (courses) => {
+                this.dataSource = courses;
             },
             error: (err) => {
                 this.isLoading = false;
