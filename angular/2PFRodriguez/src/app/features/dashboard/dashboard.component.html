@@ -40,16 +40,21 @@
 
     <!--Área derecha-->
     <div class="example-sidenav-content">
-        <mat-toolbar>
-            <button
-                mat-icon-button
-                (click)="drawer.toggle()"
-                class="example-icon"
-                aria-label="Example icon-button with menu icon"
-            >
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>2PF - Ariel Rodríguez</span>
+        <mat-toolbar style="width: 100vw; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <button
+                    mat-icon-button
+                    (click)="drawer.toggle()"
+                    class="example-icon"
+                    aria-label="Example icon-button with menu icon"
+                >
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span>2PF - Ariel Rodríguez</span>
+            </div>
+            <div *ngIf="authUser$ | async; let authUser">
+                <p>{{authUser.firstName}} {{authUser.lastName}}</p>
+            </div>
         </mat-toolbar>
 
         <!--
