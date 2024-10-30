@@ -8,14 +8,16 @@ let DATABASE: User[] = [
         firstName: "Leon Scott",
         lastName: "Kennedy",
         createdAt: new Date(),
-        email: "leonskennedy@gmail.com"
+        email: "leonskennedy@gmail.com",
+        password: "pepino69",
     },
     {
         id: "pfya29",
         firstName: "Ethan",
         lastName: "Winters",
         createdAt: new Date(),
-        email: "ewinterrep@gmail.com"
+        email: "ewinterrep@gmail.com",
+        password: "CR7cabra",
     },
 ];
 

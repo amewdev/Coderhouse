@@ -1,1 +1,30 @@
-<p>login works!</p>
+<h1>Iniciar sesión</h1>
+<form [formGroup]="loginForm">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput/>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Contaseña</mat-label>
+        <input
+            formControlName="password"
+            matInput
+            [type]="passwordInputType"
+        />
+        <button
+            type="button"
+            (click)="togglePasswordInputType()"
+            matSuffix
+            mat-icon-button
+        >
+            <mat-icon>visibility</mat-icon>
+        </button>
+    </mat-form-field>
+    <button
+        mat-flat-button
+        type="submit"
+        (click)="onSubmit()"
+    >
+        Ingresar
+    </button>
+</form>
