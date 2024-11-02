@@ -28,19 +28,24 @@ export class CoursesService {
     }
 
     getCourses(): Observable<Course[]> {
+        /*
         return new Observable((observer) => {
             setInterval(() => {
                 observer.next(DATABASE);
                 observer.complete();
             }, 750)
         })
+        */
+       return of([...DATABASE]);
     }
 
     removeCourseById(id: string): Observable<Course[]> {
+        /*
         DATABASE = DATABASE.filter((course) => course.id != id);
-
-        //return new Observable();
         return of(DATABASE).pipe(delay(1000));
+        */
+       DATABASE = DATABASE.filter((c) => c.id !== id);
+       return this.getCourses();
     }
 
     updateCourseById(id: string, update: Partial<Course>) {

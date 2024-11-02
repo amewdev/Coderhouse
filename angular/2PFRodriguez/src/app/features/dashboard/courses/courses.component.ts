@@ -4,6 +4,7 @@ import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { Course } from './models';
 import { CoursesService } from '../../../core/services/courses.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -12,6 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class CoursesComponent {
+
+    courses$: Observable<Course[]>;
 
     displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
     dataSource: Course[] = [];
@@ -23,7 +26,9 @@ export class CoursesComponent {
         private courseService: CoursesService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-    ) {}
+    ) {
+        this.courses$ = this.courseService.getCourses();
+    }
 
     loadCourses(): void {
         this.isLoading = true;

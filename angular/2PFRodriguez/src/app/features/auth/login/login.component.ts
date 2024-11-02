@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.services';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,11 @@ export class LoginComponent {
                     console.error(err);
                     if (err instanceof Error)
                         alert(err.message);
+
+                    if (err instanceof HttpErrorResponse) {
+                        if (err.status === 0)
+                            alert('No se pudo conectar con el servidor')
+                    }
                 },
             })
         }

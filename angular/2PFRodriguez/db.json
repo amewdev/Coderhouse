@@ -1,0 +1,31 @@
+{
+  "students": [
+    {
+      "id": "f1ab",
+      "email": "arr@mail.com",
+      "password": "123456",
+      "firstName": "ariel",
+      "lastName": "rodriguez",
+      "role": "admin",
+      "createdAt": "2024-10-30T15:07:21.538Z",
+      "token": "xdrbuhcftmkovgy678132pbhug7"
+    },
+    {
+      "id": "WMgefE",
+      "firstName": "naruto",
+      "lastName": "uzumaki",
+      "email": "naruzu2@mail.com",
+      "createdAt": "2024-11-02T01:56:44.695Z",
+      "role": "user",
+      "token": "WjZc6LgI09STdWvoY9VC",
+      "password": "q0z0Mr4c"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1y2q3s",
+      "name": "P1",
+      "description": "Aprender fundamentos y estructuras básicas"
+    }
+  ]
+}

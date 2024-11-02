@@ -24,6 +24,7 @@
                 #coursesLink="routerLinkActive"
                 [activated]="coursesLink.isActive"
             >CURSOS</a>
+            <!--
             <a
                 routerLink="/auth/login"
                 mat-list-item
@@ -32,9 +33,11 @@
                 routerLink="/auth/register"
                 mat-list-item
             >REGISTRARSE</a>
-            <!--
-            <a (click)="logout()" mat-list-item>CERRAR SESIÓN</a>
             -->
+            <a
+                (click)="logout()"
+                mat-list-item
+            >CERRAR SESIÓN</a>
         </mat-nav-list>
     </mat-drawer>
 
@@ -60,7 +63,6 @@
         <!--
         <app-users></app-users>
         -->
-
         <router-outlet></router-outlet>
 
     </div>

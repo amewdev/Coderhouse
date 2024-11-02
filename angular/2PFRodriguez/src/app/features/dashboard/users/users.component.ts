@@ -45,8 +45,20 @@ export class UsersComponent {
     }
 
     onDelete(id: string) {
-        if (confirm('¿Está seguro de querer eliminar este usuario?'))
-            this.dataSource = this.dataSource.filter((user) => user.id !== id)
+        if (confirm('¿Está seguro de querer eliminar este usuario?')) {
+            this.isLoading = true;
+            this.userService.removeUserById(id).subscribe({
+                next: (students) => {
+                    this.dataSource = students
+                },
+                error: (err) => {
+                    this.isLoading = false
+                },
+                complete: () => {
+                    this.isLoading = false
+                }
+            });
+        }
     }
 
     goToDetail(userId:string): void {
@@ -66,9 +78,11 @@ export class UsersComponent {
                 console.log("Recibimos : ",result);
                 if (!!result) {
                     if (editingUser)
-                        this.dataSource = this.dataSource.map((user) => user.id === editingUser.id ? {...user, ...result} : user )
+                        this.handleUpdate(editingUser.id, result);
                     else
-                        this.dataSource = [...this.dataSource, result];
+                        this.userService
+                        .createUser(result)
+                        .subscribe({ next: () => this.loadUsers() })
                 }
             }
         });

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../features/dashboard/users/models';
-import { delay, map, Observable, of } from 'rxjs';
+import { concatMap, Observable } from 'rxjs';
+import { generateString } from '../../shared/utils';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
+/*
 let DATABASE: User[] = [
     {
         id: "rcpd83",
@@ -10,6 +14,7 @@ let DATABASE: User[] = [
         createdAt: new Date(),
         email: "leonskennedy@gmail.com",
         password: "pepino69",
+        token: "mkonjibhuvgycftvgybhunjimko",
     },
     {
         id: "pfya29",
@@ -18,50 +23,52 @@ let DATABASE: User[] = [
         createdAt: new Date(),
         email: "ewinterrep@gmail.com",
         password: "CR7cabra",
+        token: "zsexdrctfvgyzsevgybhunjixdr",
     },
 ];
+*/
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UsersService {
-    addUser(result: any) {
-        throw new Error('Method not implemented.');
+
+    private baseURL = environment.apiBaseURL;
+
+    constructor(
+        private httpClient: HttpClient,
+    ) { }
+
+    createUser(data: Omit<User, 'id'>): Observable<User> {
+        return this.httpClient
+               .post<User>(`${this.baseURL}/students`, {
+                                                            ...data,
+                                                            role: "user",
+                                                            token: generateString(20),
+                                                            password: generateString(8),
+                                                            createdAt: new Date().toISOString(),
+                                                        }
+                );
     }
 
-    constructor() { }
-
     getById(id:string): Observable<User | undefined> {
-        return this.getUsers().pipe(map((users) => users.find((u) => u.id === id)));
+        return this.httpClient.get<User>(`${this.baseURL}/students/${id}`)
     }
 
     getUsers(): Observable<User[]> {
-        return new Observable((observer) => {
-            setInterval(() => {
-                observer.next(DATABASE);
-                //observer.error('Error al cargar');
-                observer.complete();
-            }, 750)
-        })
+        return this.httpClient.get<User[]>(`${this.baseURL}/students`);
     }
 
     removeUserById(id: string): Observable<User[]> {
-        DATABASE = DATABASE.filter((user) => user.id != id);
-
-        //return new Observable();
-        return of(DATABASE).pipe(delay(1000));
+        return this.httpClient
+               .delete<User>(`${this.baseURL}/students/${id}`)
+               .pipe(concatMap(() => this.getUsers()));
     }
 
     updateUserById(id: string, update: Partial<User>) {
-        DATABASE = DATABASE.map((user) => user.id === id ? {...user, ...update} : user )
-
-        return new Observable<User[]>((observer) => {
-            setInterval(() => {
-                observer.next(DATABASE);
-                observer.complete();
-            }, 1000);
-        })
+        return this.httpClient
+               .patch(`${this.baseURL}/students/${id}`,update)
+               .pipe(concatMap(() => this.getUsers()));
     }
-
 }
