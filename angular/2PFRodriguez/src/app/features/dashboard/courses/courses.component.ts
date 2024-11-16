@@ -16,7 +16,7 @@ export class CoursesComponent {
 
     courses$: Observable<Course[]>;
 
-    displayedColumns: string[] = ['id', 'name', 'description', 'actions'];
+    displayedColumns: string[] = ['id', 'name', 'description', 'price', 'actions'];
     dataSource: Course[] = [];
 
     isLoading = false;
@@ -50,8 +50,20 @@ export class CoursesComponent {
     }
 
     onDelete(id: string) {
-        if (confirm('¿Está seguro de querer eliminar este usuario?'))
-            this.dataSource = this.dataSource.filter((user) => user.id !== id)
+        if (confirm('¿Está seguro de querer eliminar este curso?')) {
+            this.isLoading = true;
+            this.courseService.removeCourseById(id).subscribe({
+                next: (courses) => {
+                    this.dataSource = courses
+                },
+                error: (err) => {
+                    this.isLoading = false
+                },
+                complete: () => {
+                    this.isLoading = false
+                }
+            });
+        }
     }
 
     goToDetail(userId:string): void {
@@ -71,9 +83,11 @@ export class CoursesComponent {
                 console.log("Recibimos : ",result);
                 if (!!result) {
                     if (editingCourse)
-                        this.dataSource = this.dataSource.map((course) => course.id === editingCourse.id ? {...course, ...result} : course )
+                        this.handleUpdate(editingCourse.id, result);
                     else
-                        this.dataSource = [...this.dataSource, result];
+                        this.courseService
+                        .createCourse(result)
+                        .subscribe({ next: () => this.loadCourses() })
                 }
             }
         });
@@ -94,4 +108,5 @@ export class CoursesComponent {
             }
         })
     }
+
 }

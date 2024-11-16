@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { UsersModule } from './users/users.module';
+import { StudentsModule } from './students/students.module';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { CoursesModule } from './courses/courses.module';
@@ -26,7 +26,7 @@ import { CoursesModule } from './courses/courses.module';
     MatSidenavModule,
     MatToolbarModule,
     SharedModule,
-    UsersModule,
+    StudentsModule,
   ],
   exports: [
     DashboardComponent,

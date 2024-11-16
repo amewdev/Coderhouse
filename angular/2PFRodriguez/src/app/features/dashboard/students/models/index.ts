@@ -1,4 +1,4 @@
-export interface User {
+export interface Student {
     id: string;
     firstName: string;
     lastName: string;
@@ -6,4 +6,5 @@ export interface User {
     password: string;
     createdAt: Date;
     token: string;
+    role: string;
 }

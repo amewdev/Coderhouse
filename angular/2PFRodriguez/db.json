@@ -25,7 +25,21 @@
     {
       "id": "1y2q3s",
       "name": "P1",
-      "description": "Aprender fundamentos y estructuras básicas"
+      "description": "Aprender fundamentos y estructuras básicas",
+      "price": 10
+    },
+    {
+      "id": "2y1q3s",
+      "name": "P2",
+      "description": "Aprender estructuras dinámicas",
+      "price": 12
+    },
+    {
+      "id": "SgHsEV",
+      "name": "p3",
+      "description": "Aprende OOP",
+      "price": 10
     }
-  ]
+  ],
+  "sales": []
 }

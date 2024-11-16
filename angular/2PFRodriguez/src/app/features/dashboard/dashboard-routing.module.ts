@@ -8,11 +8,15 @@ const routes: Routes = [
     },
     {
         path: 'students',
-        loadChildren: () => import('./users/users.module').then((n) => n.UsersModule),
+        loadChildren: () => import('./students/students.module').then((n) => n.StudentsModule),
     },
     {
         path: 'courses',
         loadChildren: () => import('./courses/courses.module').then((n) => n.CoursesModule),
+    },
+    {
+        path: 'sales',
+        loadChildren: () => import('./sales/sales.module').then((m) => m.SalesModule),
     },
     {
         path: '**',

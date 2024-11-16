@@ -9,13 +9,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserFullNamePipe } from './pipes/user-full-name.pipe';
+import { StudentFullNamePipe } from './pipes/student-full-name.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Fontsize20Directive } from './directives/fontsize20.directive';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    UserFullNamePipe,
+    StudentFullNamePipe,
     Fontsize20Directive,
   ],
   imports: [
@@ -30,8 +31,9 @@ import { Fontsize20Directive } from './directives/fontsize20.directive';
     MatInputModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatTableModule,
-    UserFullNamePipe,
+    StudentFullNamePipe,
     Fontsize20Directive,
   ]
 })

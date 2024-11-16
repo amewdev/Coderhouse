@@ -21,6 +21,16 @@
             </mat-error>
         </mat-form-field>
 
+        <mat-form-field class="example-form-field">
+            <mat-label>Precio</mat-label>
+            <input formControlName="price" matInput type="number">
+            <mat-error>
+                @if(courseForm.get('price')?.hasError('required')) {
+                    Este campo es requerido
+                }
+            </mat-error>
+        </mat-form-field>
+
     </form>
 </div>
 

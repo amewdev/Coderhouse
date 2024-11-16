@@ -2,12 +2,12 @@ import { TestBed } from "@angular/core/testing"
 import { AuthService } from "./auth.services"
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing"
 import { AuthData } from "../../features/auth/models";
-import { User } from "../../features/dashboard/users/models";
+import { Student } from "../../features/dashboard/students/models";
 import { MockProvider } from "ng-mocks";
 import { NavigationExtras, Router, RouterLink } from "@angular/router";
 
-const mockUser: User = { id: 'dsds', firstName: 'mockname', lastName: 'mocksur', email: 'mock@mail.com', password: '123456', createdAt: new Date(), token: 'w389nyxcng7npm29xi9' }
-const mockAuthData: AuthData = { email: 'mockuser@mail.com', password: '123456' };
+const mockStudent: Student = { id: 'dsds', firstName: 'mockname', lastName: 'mocksur', email: 'mock@mail.com', role: 'user', password: '123456', createdAt: new Date(), token: 'w389nyxcng7npm29xi9' }
+const mockAuthData: AuthData = { email: 'mockstudent@mail.com', password: '123456' };
 
 fdescribe('AuthService', () => {
 
@@ -44,8 +44,8 @@ fdescribe('AuthService', () => {
 
         service.login(mockAuthData).subscribe({
             next: (student) => {
-                expect(student).toEqual(mockUser);
-                expect(localStorage.getItem('token')).toEqual(mockUser.token);
+                expect(student).toEqual(mockStudent);
+                expect(localStorage.getItem('token')).toEqual(mockStudent.token);
                 done();
             }
         });
@@ -55,7 +55,7 @@ fdescribe('AuthService', () => {
             method: 'GET',
         });
 
-        mockReq.flush([mockUser]);
+        mockReq.flush([mockStudent]);
     })
 
     it('must throw error at when invalid login', (done) => {
@@ -77,7 +77,7 @@ fdescribe('AuthService', () => {
         mockReq.flush([]);
     })
 
-    it('logout must remove token from localstorage, unset authed user and redirect to /auth/login', (done) => {
+    it('logout must remove token from localstorage, unset authed student and redirect to /auth/login', (done) => {
 
         const spyOnNavigate = spyOn(router, 'navigate');
 
@@ -86,12 +86,12 @@ fdescribe('AuthService', () => {
             url: `${service['baseURL']}/students?email=${mockAuthData.email}&password=${mockAuthData.password}`,
             method: 'GET',
         });
-        mockReq.flush([mockUser]);
+        mockReq.flush([mockStudent]);
 
         service.logout();
         expect(localStorage.getItem('token')).toBeNull();
 
-        service.authUser$.subscribe({
+        service.authStudent$.subscribe({
             next: (student) => {
                 expect(student).toBeNull();
                 done();

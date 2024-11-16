@@ -10,6 +10,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
 import { StoreModule } from '@ngrx/store';
 import { RootReducer } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         DashboardModule,
         StoreModule.forRoot(RootReducer, {}),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+        EffectsModule.forRoot([]),
     ],
     providers: [
         provideAnimationsAsync(),

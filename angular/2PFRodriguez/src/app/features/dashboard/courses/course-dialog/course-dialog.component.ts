@@ -24,8 +24,9 @@ export class CourseDialogComponent {
         @Inject(MAT_DIALOG_DATA) public data?:CourseDialogData,
     ) {
         this.courseForm = this.formBuilder.group({
-            name: [null, [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]],
-            description: [null, [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]],
+            name: [null, [Validators.required]],
+            description: [null, [Validators.required, Validators.minLength(3)]],
+            price: [null,[Validators.required]],
         });
         this.patchFormValue();
     }

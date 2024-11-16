@@ -10,13 +10,22 @@
                 [activated]="homeLink.isActive"
                 mat-list-item
             >INICIO</a>
+            @if ((authStudent$ | async)?.role == 'admin') {
+                <a
+                    routerLink="students"
+                    mat-list-item
+                    routerLinkActive
+                    #studentsLink="routerLinkActive"
+                    [activated]="studentsLink.isActive"
+                >ALUMNOS</a>
+            }
             <a
-                routerLink="students"
+                routerLink="sales"
                 mat-list-item
                 routerLinkActive
-                #usersLink="routerLinkActive"
-                [activated]="usersLink.isActive"
-            >ALUMNOS</a>
+                #salesLink="routerLinkActive"
+                [activated]="salesLink.isActive"
+            >INSCRIPCIONES</a>
             <a
                 routerLink="courses"
                 mat-list-item
@@ -24,16 +33,6 @@
                 #coursesLink="routerLinkActive"
                 [activated]="coursesLink.isActive"
             >CURSOS</a>
-            <!--
-            <a
-                routerLink="/auth/login"
-                mat-list-item
-            >INGRESAR</a>
-            <a
-                routerLink="/auth/register"
-                mat-list-item
-            >REGISTRARSE</a>
-            -->
             <a
                 (click)="logout()"
                 mat-list-item
@@ -55,14 +54,11 @@
                 </button>
                 <span>2PF - Ariel Rodríguez</span>
             </div>
-            <div *ngIf="authUser$ | async; let authUser">
-                <p>{{authUser.firstName}} {{authUser.lastName}}</p>
+            <div *ngIf="authStudent$ | async; let authStudent">
+                <p>{{authStudent.firstName}} {{authStudent.lastName}}</p>
             </div>
         </mat-toolbar>
 
-        <!--
-        <app-users></app-users>
-        -->
         <router-outlet></router-outlet>
 
     </div>

@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'userFullName'
+  name: 'studentFullName'
 })
-export class UserFullNamePipe implements PipeTransform {
+export class StudentFullNamePipe implements PipeTransform {
 
     transform(value: any, ...args: unknown[]): string {
         return (value.firstName+' '+value.lastName).toUpperCase();

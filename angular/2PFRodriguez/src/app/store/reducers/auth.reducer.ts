@@ -1,34 +1,34 @@
 import { createReducer, on } from "@ngrx/store";
-import { User } from "../../features/dashboard/users/models";
+import { Student } from "../../features/dashboard/students/models";
 import { AuthActions } from "../actions/auth.actions";
 
 export const authFeatureName = 'auth';
 
 export interface AuthState {
-    authenticatedUser: User | null,
+    authenticatedStudent: Student | null,
 }
 
 const initialState: AuthState = {
-    authenticatedUser: null,
+    authenticatedStudent: null,
 };
 
 export const authReducer = createReducer(
     initialState,
     on(
-        AuthActions.setAuthenticatedUser,
+        AuthActions.setAuthenticatedStudent,
         (state, action) => {
             return {
                 ...state,
-                authenticatedUser: action.user,
+                authenticatedStudent: action.student,
             }
         }
     ),
     on(
-        AuthActions.unsetAuthenticatedUser,
+        AuthActions.unsetAuthenticatedStudent,
         (state) => {
             return {
                 ...state,
-                authenticatedUser: null,
+                authenticatedStudent: null,
             }
         }
     )

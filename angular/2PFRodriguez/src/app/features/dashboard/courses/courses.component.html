@@ -1,18 +1,3 @@
-<!--
-<pre>{{courses$ | async | json}}</pre>
--->
-
-<form>
-    <mat-form-field>
-        <mat-label>Nombre</mat-label>
-        <input matInput/>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Descripción</mat-label>
-        <input matInput/>
-    </mat-form-field>
-</form>
-
 <div class="container">
     @if (isLoading) {
         <mat-spinner></mat-spinner>
@@ -37,6 +22,10 @@
             <ng-container matColumnDef="description">
                 <th appFontsize20 mat-header-cell *matHeaderCellDef>Descripción</th>
                 <td mat-cell *matCellDef="let course"> {{course.description}} </td>
+            </ng-container>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Precio</th>
+                <td mat-cell *matCellDef="let course"> {{course.price}} </td>
             </ng-container>
 
             <!-- Actions Column -->

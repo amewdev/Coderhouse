@@ -1,11 +1,11 @@
-<h3 mat-dialog-title>{{data?.editingUser ? 'Editando' : 'Creando'}} usuario</h3>
+<h3 mat-dialog-title>{{data?.editingStudent ? 'Editando' : 'Creando'}} usuario</h3>
 <div mat-dialog-content>
-    <form [formGroup]="userForm">
+    <form [formGroup]="studentForm">
         <mat-form-field class="example-form-field">
             <mat-label>Nombre</mat-label>
             <input formControlName="firstName" matInput type="text">
             <mat-error>
-                @if(userForm.get('firstName')?.hasError('required')) {
+                @if(studentForm.get('firstName')?.hasError('required')) {
                     Este campo es requerido
                 }
             </mat-error>
@@ -15,7 +15,7 @@
             <mat-label>Apellido</mat-label>
             <input formControlName="lastName" matInput type="text">
             <mat-error>
-                @if(userForm.get('lastName')?.hasError('required')) {
+                @if(studentForm.get('lastName')?.hasError('required')) {
                     Este campo es requerido
                 }
             </mat-error>
@@ -25,7 +25,7 @@
             <mat-label>email</mat-label>
             <input formControlName="email" matInput type="email">
             <mat-error>
-                @if(userForm.get('email')?.hasError('required')) {
+                @if(studentForm.get('email')?.hasError('required')) {
                     Este campo es requerido
                 }
             </mat-error>

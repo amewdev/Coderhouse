@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { AuthData } from "../../features/auth/models";
 import { BehaviorSubject, map, Observable, of, throwError } from "rxjs";
-import { User } from "../../features/dashboard/users/models";
+import { Student } from "../../features/dashboard/students/models";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { Store } from "@ngrx/store";
 import { AuthActions } from "../../store/actions/auth.actions";
-import { selectAuthenticatedUser } from "../../store/selector/auth.selectors";
+import { selectAuthenticatedStudent } from "../../store/selector/auth.selectors";
 
 @Injectable({
     providedIn: 'root',
@@ -15,8 +15,8 @@ import { selectAuthenticatedUser } from "../../store/selector/auth.selectors";
 
 export class AuthService {
 
-    //private _authUser$ = new BehaviorSubject<null | User>(null);
-    public authUser$: Observable< User | null >;
+    //private _authStudent$ = new BehaviorSubject<null | Student>(null);
+    public authStudent$: Observable< Student | null >;
 
     private baseURL = environment.apiBaseURL;
 
@@ -25,13 +25,13 @@ export class AuthService {
         private httpClient: HttpClient,
         private store: Store,
     ) {
-        this.authUser$ = this.store.select(selectAuthenticatedUser);
+        this.authStudent$ = this.store.select(selectAuthenticatedStudent);
     }
 
-    private handleAuth(students: User[]): User | null {
+    private handleAuth(students: Student[]): Student | null {
         if (!!students[0]) {
-            //this._authUser$.next(students[0]);
-            this.store.dispatch(AuthActions.setAuthenticatedUser({user: students[0]}));
+            //this._authStudent$.next(students[0]);
+            this.store.dispatch(AuthActions.setAuthenticatedStudent({student: students[0]}));
             localStorage.setItem('token',students[0].token);
             return students[0];
         } else {
@@ -39,8 +39,8 @@ export class AuthService {
         }
     }
 
-    login(data: AuthData): Observable<User> {
-        return this.httpClient.get<User[]>(`${this.baseURL}/students?email=${data.email}&password=${data.password}`)
+    login(data: AuthData): Observable<Student> {
+        return this.httpClient.get<Student[]>(`${this.baseURL}/students?email=${data.email}&password=${data.password}`)
                               .pipe(map((students) => {
                                     const student = this.handleAuth(students);
                                     if (student)
@@ -51,14 +51,14 @@ export class AuthService {
     }
 
     logout() {
-        //this._authUser$.next(null);
-        this.store.dispatch(AuthActions.unsetAuthenticatedUser());
+        //this._authStudent$.next(null);
+        this.store.dispatch(AuthActions.unsetAuthenticatedStudent());
         localStorage.removeItem('token');
         this.router.navigate(['auth','login']);
     }
 
     verifyToken(): Observable<boolean> {
-        return this.httpClient.get<User[]>(`${this.baseURL}/students?token=${localStorage.getItem('token')}`)
+        return this.httpClient.get<Student[]>(`${this.baseURL}/students?token=${localStorage.getItem('token')}`)
                               .pipe(map((students) => {
                                     const student = this.handleAuth(students);
                                     return !!student;

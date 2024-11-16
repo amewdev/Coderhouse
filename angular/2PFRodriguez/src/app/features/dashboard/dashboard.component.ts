@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../core/services/auth.services';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from './users/models';
+import { Student } from './students/models';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -13,13 +13,13 @@ import { environment } from '../../../environments/environment';
 export class DashboardComponent {
     showFiller = false;
 
-    authUser$: Observable<User | null>;
+    authStudent$: Observable<Student | null>;
 
     constructor(
         private router: Router,
         private authService: AuthService,
     ) {
-        this.authUser$ = this.authService.authUser$;
+        this.authStudent$ = this.authService.authStudent$;
     }
 
     logout(): void {
